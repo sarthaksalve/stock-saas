@@ -22,3 +22,49 @@ class MarketIndex(BaseModel):
             }
         }
     }
+
+
+class StockQuote(BaseModel):
+    symbol: str = Field(..., description="Stock ticker symbol")
+    name: str = Field(..., description="Company name")
+    price: float = Field(..., description="Current trading price")
+    change: float = Field(..., description="Price change amount")
+    change_percent: float = Field(..., description="Price change percentage")
+    volume: int = Field(..., description="Trading volume")
+    timestamp: datetime = Field(..., description="Quote timestamp")
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "symbol": "RELIANCE",
+                "name": "Reliance Industries Limited",
+                "price": 2945.20,
+                "change": 69.30,
+                "change_percent": 2.41,
+                "volume": 12450000,
+                "timestamp": "2026-09-08T14:20:00Z",
+            }
+        }
+    }
+
+
+class OHLCV(BaseModel):
+    timestamp: datetime = Field(..., description="Candle start timestamp")
+    open: float = Field(..., description="Opening price")
+    high: float = Field(..., description="Highest price during period")
+    low: float = Field(..., description="Lowest price during period")
+    close: float = Field(..., description="Closing price")
+    volume: int = Field(..., description="Trading volume during period")
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "timestamp": "2026-09-08T00:00:00Z",
+                "open": 2920.00,
+                "high": 2960.50,
+                "low": 2910.00,
+                "close": 2945.20,
+                "volume": 12450000,
+            }
+        }
+    }
